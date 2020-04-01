@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Figuras en CSS</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; border: none; outline: none; box-sizing: border-box;}
+        html {
+            font-size: 19px;
+        }
+        body {
+            margin: 20px;
+            font-family: 'Indie Flower', cursive;
+            background-color: #EDF8DC;
+            color: #111;
+        }
+        .txtc {
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            text-align: center;
+        }
+        input,
+        select {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.5em;
+        }
+        input {
+            border-bottom: 1px solid;
+            width: 3ch;
+            text-align: center;
+            margin: 0 3px;
+            height: 30px;
+        }
+        input:focus {
+            border-bottom: 1px solid #8C9F72;
+        }
+        select {
+            box-shadow: 3px 3px 3px rgba(0,0,0,.4);
+        }
+        .flexibilizador {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .flex-figura {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .caja-figura {
+            width: 310px;
+            height: 360px;
+            border: 1px solid #8C9F72;
+            border-radius: 15px;
+            margin: 30px;
+            padding: 20px;
+            background-color: white;
+            display: grid;
+            grid-template-rows: 37px 118px 30px auto;
+            align-items: flex-end;
+        }
+        .caja-figura:last-child {
+            grid-template-rows: 37px 118px auto;
+        }
+        .figura {
+            margin: 5px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4em;
+            position: relative;
+        }
+        .cuadrado {
+            height: 100px;
+            width: 100px;
+            background-color: #D0EF8A;
+
+        }
+        .rectangulo {
+            width: 153px;
+            height: 100px;
+            background-color: #D0EF8A;
+        }
+        .triangulo1 {
+            width: 0;
+            height: 0;
+            border-bottom: 100px solid #D0EF8A;
+            border-right: 60px solid transparent;
+            border-left: 60px solid transparent;      
+        }
+        .circulo {
+            width: 100px;
+            height: 100px;
+            background-color: #D0EF8A;
+            border-radius: 50%;
+        }
+        button {
+            background-color: #EF9C00;
+            border: 2px solid #966C1D;
+            font-size: 1.5em;
+            color: white;
+            padding: 5px 12px;
+            font-family: 'Indie Flower', cursive;
+            border-radius: 13px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #966C1D;
+            border: 2px solid #EF9C00;
+        }
+        [for*="base"] {
+            margin-left: 30px;
+        }
+        .pos-area-triangulo {
+            position: absolute;
+            top: 57px;
+            left: -34px;
+            width: 90px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cálculo de Áreas</h1>
+    <div class="txtc">
+        <select name="unidades" id="unidades">
+            <option value="">Elige unidad de medida</option>
+            <option value="m">m.</option>
+            <option value="cm">cm.</option>
+            <option value="mm">mm.</option>
+        </select>
+    </div>
+    <div class="flexibilizador">
+        <div class="caja-figura">
+            <h2 class="txtc">Cuadrado</h2>
+            <div class="flex-figura">
+                <div class="figura  cuadrado">
+                    <span id="area-cuadrado">25</span>
+                    <span>m2</span></div>
+                <div>
+                    <label for="lado-cuadrado">a=</label>
+                    <input type="text" id="lado-cuadrado" name="lado-cuadrado"><span>m</span>
+                </div>
+            </div>
+            <div>
+                <label for="base-cuadrado">b=</label>
+                <input type="text" id="base-cuadrado" name="base-cuadrado" onchange="repetirValor()"><span>m</span>
+            </div>
+            <div class="txtc">
+                <button onclick="calcAreaCuadrado()">Calcular Área</button>
+            </div>
+        </div>
+        <div class="caja-figura">
+            <h2 class="txtc">Rectangulo</h2>
+
+            <div class="flex-figura">
+                <div class="figura  rectangulo"><span id="area-rectangulo">25</span><span>m2</span></div>
+                <div>
+                    <label for="lado-rectangulo">a=</label>
+                    <input type="text" id="lado-rectangulo" name="lado-rectangulo"><span>m</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="base-rectangulo">b=</label>
+                <input type="text" id="base-rectangulo" name="base-rectangulo"><span>m</span>
+            </div>
+
+            <div class="txtc">
+                <button onclick="calcAreaRectangulo()">Calcular Área</button>
+            </div>
+        </div>
+        <div class="caja-figura">
+
+            <h2 class="txtc">Triangulo</h2>
+
+            <div class="flex-figura">
+                <div class="figura  triangulo1">
+                    <div class="pos-area-triangulo">
+                        <span id="area-triangulo">25</span>
+                        <span>m2</span>
+                    </div>
+                </div>
+                <label for="altura-triangulo">h=</label>
+                <input type="text" id="altura-triangulo" name="altura-triangulo"><span>m</span>
+            </div>
+
+            <div>
+                <label for="base-triangulo">b=</label>
+                <input type="text" id="base-triangulo" name="base-triangulo"><span>m</span>
+            </div>
+
+            <div class="txtc">
+                <button onclick="calcAreaTriangulo()">Calcular Área</button>
+            </div>
+        </div>
+        <div class="caja-figura">
+
+            <h2 class="txtc">Circulo</h2>
+
+            <div class="flex-figura">
+                <div class="figura  circulo">
+                    <span id="area-circulo">25</span>
+                    <span>m2</span>
+                </div>
+                <label for="radio-circulo">r=</label>
+                <input type="text" id="radio-circulo" name="radio-circulo"><span>m</span>
+            </div>
+
+            <div class="txtc">
+                <button onclick="calcAreaCirculo()">Calcular Área</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function repetirValor(){
+            var baseCuadrado = parseInt(document.querySelector('#base-cuadrado').value)
+            document.querySelector('#lado-cuadrado').value = baseCuadrado
+            alert('hola')
+        }
+
+        function calcAreaCuadrado(){
+            var baseCuadrado = parseInt(document.querySelector('#base-cuadrado').value)
+            var ladoCuadrado = parseInt(document.querySelector('#lado-cuadrado').value)
+
+            var areaCuadrado = baseCuadrado * ladoCuadrado
+
+            // console.log(`La base del cuadrado es: ${baseCuadrado}`)
+            // console.log(`El lado del cuadrado es: ${ladoCuadrado}`)
+            // console.log("El Area del cuadrado es: " + areaCuadrado)
+
+            document.querySelector('#area-cuadrado').innerHTML = areaCuadrado
+        }
+
+        function calcAreaRectangulo(){
+            var baseRectangulo = parseInt(document.querySelector('#base-rectangulo').value)
+            var ladoRectangulo = parseInt(document.querySelector('#lado-rectangulo').value)
+            var areaRectangulo = baseRectangulo * ladoRectangulo
+            document.querySelector('#area-rectangulo').innerHTML = areaRectangulo
+        }
+
+        function calcAreaTriangulo(){
+            var baseTriangulo = parseInt(document.querySelector('#base-triangulo').value)
+            var alturaTriangulo = parseInt(document.querySelector('#altura-triangulo').value)
+            var areaTriangulo = baseTriangulo * alturaTriangulo / 2
+            document.querySelector('#area-triangulo').innerHTML = areaTriangulo
+        }
+
+        function calcAreaCirculo(){
+            var radioCirculo = parseInt(document.querySelector('#radio-circulo').value)
+            var areaCirculo = Math.PI * Math.pow(radioCirculo, 2)
+            
+            document.querySelector('#area-circulo').innerHTML = areaCirculo.toFixed(2)
+        }
+
+
+    </script>
+</body>
+</html>
